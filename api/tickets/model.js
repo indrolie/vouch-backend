@@ -20,9 +20,4 @@ const ticketsSchema = new mongoose.Schema({
 
 const Tickets = mongoose.model('Tickets', ticketsSchema)
 
-const DUMMY_DATA = {
-    name: 'Laxus',
-    logs: 'Checking the issue...'
-}
-
-Tickets.insertMany(DUMMY_DATA).then(result => console.log(result))
+module.exports = Tickets
