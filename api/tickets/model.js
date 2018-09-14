@@ -1,23 +1,28 @@
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/vouch')
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/vouch');
 
-const ticketsSchema = new mongoose.Schema({
+const ticketsSchema = new mongoose.Schema(
+  {
     name: String,
-    status: {
-        type: String,
-        default: 'open'
-    },
+    phoneNumber: String,
+    email: String,
+    description: String,
     logs: String,
+    status: {
+      type: String,
+      default: 'open'
+    },
     createdAt: {
-        type: Date,
-        default: Date.now
+      type: Date,
+      default: Date.now
     },
     updatedAt: Date
-}, {
-        versionKey: false
-    }
-)
+  },
+  {
+    versionKey: false
+  }
+);
 
-const Tickets = mongoose.model('Tickets', ticketsSchema)
+const Tickets = mongoose.model('Tickets', ticketsSchema);
 
-module.exports = Tickets
+module.exports = Tickets;
