@@ -7,9 +7,9 @@ const getCounter = async () => {
       { name: 'ticketNumber' },
       { $inc: { ticketNumber: 1 } },
       { new: true },
-      function(err, doc) {
-        if (doc) {
-          resolve (doc.ticketNumber);
+      (err, result) => {
+        if (result) {
+          resolve(result.ticketNumber);
         } else {
           console.log('Update failed...');
           reject();
@@ -22,6 +22,20 @@ const getCounter = async () => {
 const controller = {
   showTickets: (req, res, next) => {
     Tickets.find()
+      .then(response => res.status(200).send(response))
+      .catch(error =>
+        res.status(400).send({
+          message: error.message
+        })
+      );
+  },
+
+  showOneTicket: (req, res, next) => {
+    Tickets.findOne({ ticketNumber: req.params.id }, (result, err) => {
+      if (result) {
+        console.log(result);
+      }
+    })
       .then(response => res.status(200).send(response))
       .catch(error =>
         res.status(400).send({

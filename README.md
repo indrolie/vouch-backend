@@ -5,7 +5,8 @@
 
 ## API Endpoint
 
-| Endpoint        | Method | Description       |
-| --------------- | ------ | ----------------- |
-| /tickets        | GET    | Show all tickets  |
-| /tickets/create | POST   | Create one ticket |
+| Endpoint        | Method | Description                            |
+| --------------- | ------ | ---------------------------------------|
+| /tickets        | GET    | Show all tickets                       |
+| /tickets/:id    | GET    | Show one ticket with ticket number     |
+| /tickets/create | POST   | Create one ticket                      |
