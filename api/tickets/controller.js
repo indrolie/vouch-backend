@@ -1,4 +1,23 @@
 const Tickets = require('./model');
+const Counter = require('./counter');
+
+const getCounter = async () => {
+  return new Promise((resolve, reject) => {
+    Counter.findOneAndUpdate(
+      { name: 'ticketNumber' },
+      { $inc: { ticketNumber: 1 } },
+      { new: true },
+      function(err, doc) {
+        if (doc) {
+          resolve (doc.ticketNumber);
+        } else {
+          console.log('Update failed...');
+          reject();
+        }
+      }
+    );
+  });
+};
 
 const controller = {
   showTickets: (req, res, next) => {
@@ -12,7 +31,10 @@ const controller = {
   },
 
   createTicket: async (req, res, next) => {
+    const result = await getCounter();
+
     const newTicket = {
+      ticketNumber: result,
       name: req.body.name,
       phoneNumber: req.body.phoneNumber,
       email: req.body.email,

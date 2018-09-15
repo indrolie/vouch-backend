@@ -19,6 +19,7 @@ mongoose.connect('mongodb://' + process.env.PRODUCTION_DB_HOST + ':' + process.e
 
 const ticketsSchema = new mongoose.Schema(
   {
+    ticketNumber: Number,
     name: String,
     phoneNumber: String,
     email: String,
@@ -26,7 +27,7 @@ const ticketsSchema = new mongoose.Schema(
     logs: String,
     status: {
       type: String,
-      default: 'open'
+      default: 'Open'
     },
     createdAt: {
       type: Date,
