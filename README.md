@@ -12,3 +12,5 @@
 | /tickets/create | POST   | Create one ticket                      |
 | /tickets/:id    | PUT    | Update one ticket                      |
 | /tickets/:id    | DETELE | Delete one ticket                      |
+| /logs/add       | POST   | Add one log                            |
+| /logs/:id       | GET    | Show one ticket                        |

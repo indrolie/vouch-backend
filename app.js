@@ -7,6 +7,7 @@ const cors = require('cors')
 
 const indexRouter = require('./api/root')
 const ticketsRouter = require('./api/tickets')
+const logsRouter = require('./api/logs')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(cookieParser())
 
 app.use('/', indexRouter)
 app.use('/tickets', ticketsRouter)
+app.use('/logs', logsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

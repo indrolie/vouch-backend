@@ -21,6 +21,8 @@ mongoose.connect(
   }
 );
 
+//-------------------------------------------------------------------------------------------------------------------
+
 const ticketsSchema = new mongoose.Schema(
   {
     ticketNumber: Number,
@@ -57,6 +59,8 @@ const DUMMY_TICKET = {
 
 Tickets.insertMany(DUMMY_TICKET).then(result => console.log(result));
 
+//-------------------------------------------------------------------------------------------------------------------
+
 const counterSchema = new mongoose.Schema(
   {
       name: String,
@@ -75,3 +79,24 @@ const DUMMY_COUNTER = {
 };
 
 Counter.insertMany(DUMMY_COUNTER).then(result => console.log(result));
+
+//-------------------------------------------------------------------------------------------------------------------
+
+const logsSchema = new mongoose.Schema(
+  {
+      ticketNumber: Number,
+      logs: String
+  },
+  {
+    versionKey: false
+  }
+);
+
+const Logs = mongoose.model('Logs', logsSchema);
+
+const DUMMY_LOGS = {
+  ticketNumber: 100001,
+  logs: "Checking the issue..."
+};
+
+Logs.insertMany(DUMMY_LOGS).then(result => console.log(result));
