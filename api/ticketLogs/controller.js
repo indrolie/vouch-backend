@@ -18,7 +18,8 @@ const controller = {
   addLog: async (req, res, next) => {
     const newLog = {
       ticketNumber: req.body.ticketNumber,
-      logs: req.body.logs
+      logs: req.body.logs,
+      updatedAt: req.body.updatedAt
     };
 
     await Logs.create(newLog)
