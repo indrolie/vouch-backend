@@ -6,7 +6,7 @@ const controller = require('./controller')
 router.get('/', controller.showTickets)
 router.get('/:id', controller.showOneTicket)
 router.post('/create', controller.createTicket)
-router.post('/:id', controller.updateTicket)
+router.put('/:id', controller.updateTicket)
 router.delete('/:id', controller.deleteTicket)
 
 module.exports = router
