@@ -63,6 +63,54 @@ const controller = {
           message: error.message
         })
       );
+  },
+
+  updateTicket: async (req, res, next) => {
+    const data = {};
+
+    await Tickets.findOneAndUpdate(
+      { ticketNumber: req.params.id },
+      {
+        $set: {
+          logs: req.body.logs,
+          status: req.body.status,
+          updatedAt: Date.now()
+        }
+      },
+      { new: true },
+      (result, err) => {
+        if (result) {
+          console.log(result);
+        }
+      }
+    )
+      .then(response => res.status(200).send(response))
+      .catch(error =>
+        res.status(400).send({
+          message: error.message
+        })
+      );
+  },
+
+  deleteTicket: async (req, res, next) => {
+    await Tickets.findOneAndRemove(
+      { ticketNumber: req.params.id },
+      (result, err) => {
+        if (result) {
+          console.log(result);
+        }
+      }
+    )
+      .then(response =>
+        res.status(200).send({
+          message: 'Ticket Deleted!'
+        })
+      )
+      .catch(error =>
+        res.status(400).send({
+          message: error.message
+        })
+      );
   }
 };
 

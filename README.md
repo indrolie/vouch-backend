@@ -8,5 +8,7 @@
 | Endpoint        | Method | Description                            |
 | --------------- | ------ | ---------------------------------------|
 | /tickets        | GET    | Show all tickets                       |
-| /tickets/:id    | GET    | Show one ticket with ticket number     |
+| /tickets/:id    | GET    | Show one ticket                        |
 | /tickets/create | POST   | Create one ticket                      |
+| /tickets/:id    | POST   | Update one ticket                      |
+| /tickets/:id    | DETELE | Delete one ticket                      |
