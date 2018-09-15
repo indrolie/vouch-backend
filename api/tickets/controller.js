@@ -53,7 +53,8 @@ const controller = {
       phoneNumber: req.body.phoneNumber,
       email: req.body.email,
       description: req.body.description,
-      logs: req.body.logs
+      logs: req.body.logs,
+      createdAt: req.body.createdAt
     };
 
     await Tickets.create(newTicket)
