@@ -35,11 +35,8 @@ const ticketsSchema = new mongoose.Schema(
       type: String,
       default: 'Open'
     },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    },
-    updatedAt: Date
+    createdAt: String,
+    updatedAt: String
   },
   {
     versionKey: false
@@ -49,12 +46,14 @@ const ticketsSchema = new mongoose.Schema(
 const Tickets = mongoose.model('Tickets', ticketsSchema);
 
 const DUMMY_TICKET = {
+  ticketNumber: '100000',
   name: 'Laxus',
   phoneNumber: '+62 349 28349',
   email: 'Laxus@email.com',
   description: 'Unable to access my account',
-  logs: "I can't sign in to my account",
-  updatedAt: new Date()
+  logs: "I can't sign in to my account since this morning",
+  createdAt: '03:03:48  16/09/2018',
+  updatedAt: '03:03:48  16/09/2018'
 };
 
 Tickets.insertMany(DUMMY_TICKET).then(result => console.log(result));
@@ -96,7 +95,8 @@ const Logs = mongoose.model('Logs', logsSchema);
 
 const DUMMY_LOGS = {
   ticketNumber: 100001,
-  logs: "Checking the issue..."
+  logs: "Checking the issue...",
+  updatedAt: '07:03:48  16/09/2018'
 };
 
 Logs.insertMany(DUMMY_LOGS).then(result => console.log(result));

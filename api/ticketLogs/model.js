@@ -21,7 +21,7 @@ require('dotenv-extended').load({
     {
         ticketNumber: Number,
         logs: String,
-        updatedAt: Date
+        updatedAt: String
     },
     {
       versionKey: false

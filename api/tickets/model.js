@@ -12,10 +12,18 @@ require('dotenv-extended').load({
 });
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://' + process.env.PRODUCTION_DB_HOST + ':' + process.env.PRODUCTION_DB_PORT + '/' + process.env.PRODUCTION_DB_NAME, {
+mongoose.connect(
+  'mongodb://' +
+    process.env.PRODUCTION_DB_HOST +
+    ':' +
+    process.env.PRODUCTION_DB_PORT +
+    '/' +
+    process.env.PRODUCTION_DB_NAME,
+  {
     user: process.env.PRODUCTION_DB_USERNAME,
     pass: process.env.PRODUCTION_DB_PASSWORD
-});
+  }
+);
 
 const ticketsSchema = new mongoose.Schema(
   {
@@ -29,11 +37,8 @@ const ticketsSchema = new mongoose.Schema(
       type: String,
       default: 'Open'
     },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    },
-    updatedAt: Date
+    createdAt: String,
+    updatedAt: String
   },
   {
     versionKey: false
