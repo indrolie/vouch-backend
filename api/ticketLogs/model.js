@@ -20,7 +20,8 @@ require('dotenv-extended').load({
   const logsSchema = new mongoose.Schema(
     {
         ticketNumber: Number,
-        logs: String
+        logs: String,
+        updatedAt: Date
     },
     {
       versionKey: false
