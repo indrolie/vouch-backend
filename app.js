@@ -7,7 +7,7 @@ const cors = require('cors')
 
 const indexRouter = require('./api/root')
 const ticketsRouter = require('./api/tickets')
-const logsRouter = require('./api/logs')
+const logsRouter = require('./api/ticketLogs')
 
 const app = express()
 
