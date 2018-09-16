@@ -58,7 +58,7 @@ const controller = {
     };
 
     await Tickets.create(newTicket)
-      .then(response => res.status(201).send(response))
+      .then(response => res.status(201).send({response, message: 'Ticket Created'}))
       .catch(error =>
         res.status(400).send({
           message: error.message
@@ -85,7 +85,7 @@ const controller = {
         }
       }
     )
-      .then(response => res.status(200).send(response))
+      .then(response => res.status(200).send({response, message: 'Ticket Updated'}))
       .catch(error =>
         res.status(400).send({
           message: error.message

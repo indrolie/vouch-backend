@@ -23,7 +23,7 @@ const controller = {
     };
 
     await Logs.create(newLog)
-      .then(response => res.status(201).send(response))
+      .then(response => res.status(201).send({response, message: 'Ticket Updated'}))
       .catch(error =>
         res.status(400).send({
           message: error.message
