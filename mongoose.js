@@ -46,7 +46,7 @@ const ticketsSchema = new mongoose.Schema(
 const Tickets = mongoose.model('Tickets', ticketsSchema);
 
 const DUMMY_TICKET = {
-  ticketNumber: '100000',
+  ticketNumber: '100001',
   name: 'Laxus',
   phoneNumber: '+62 349 28349',
   email: 'Laxus@email.com',
@@ -74,7 +74,7 @@ const Counter = mongoose.model('Counters', counterSchema);
 
 const DUMMY_COUNTER = {
   name: 'ticketNumber',
-  ticketNumber: 100000
+  ticketNumber: 100001
 };
 
 Counter.insertMany(DUMMY_COUNTER).then(result => console.log(result));
