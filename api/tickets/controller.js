@@ -1,4 +1,5 @@
 const Tickets = require('./model');
+const Logs = require('../ticketLogs/model')
 const Counter = require('./counter');
 
 const getCounter = async () => {
@@ -64,6 +65,15 @@ const controller = {
           message: error.message
         })
       );
+
+      const newLog = {
+        ticketNumber: result,
+        logs: req.body.logs,
+        updatedAt: req.body.updatedAt
+      };
+      await Logs.create(newLog)
+      .then(response => console.log(response))
+      .catch(error =>console.log(error))
   },
 
   updateTicket: async (req, res, next) => {

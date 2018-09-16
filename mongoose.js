@@ -84,7 +84,8 @@ Counter.insertMany(DUMMY_COUNTER).then(result => console.log(result));
 const logsSchema = new mongoose.Schema(
   {
       ticketNumber: Number,
-      logs: String
+      logs: String,
+      updatedAt: String
   },
   {
     versionKey: false
@@ -96,7 +97,7 @@ const Logs = mongoose.model('Logs', logsSchema);
 const DUMMY_LOGS = {
   ticketNumber: 100001,
   logs: "Checking the issue...",
-  updatedAt: '07:03:48  16/09/2018'
+  updatedAt: "07:03:48  16/09/2018"
 };
 
 Logs.insertMany(DUMMY_LOGS).then(result => console.log(result));
