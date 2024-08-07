@@ -9,26 +9,26 @@ require('dotenv-extended').load({
     includeProcessEnv: false,
     assignToProcessEnv: true,
     overrideProcessEnv: false
-  });
+});
   
-  const mongoose = require('mongoose');
-  mongoose.connect('mongodb://' + process.env.PRODUCTION_DB_HOST + ':' + process.env.PRODUCTION_DB_PORT + '/' + process.env.PRODUCTION_DB_NAME, {
-      user: process.env.PRODUCTION_DB_USERNAME,
-      pass: process.env.PRODUCTION_DB_PASSWORD
-  });
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
   
-  const logsSchema = new mongoose.Schema(
+const logsSchema = new mongoose.Schema(
     {
         ticketNumber: Number,
         logs: String,
         updatedAt: String
     },
     {
-      versionKey: false
+		versionKey: false
     }
-  );
+);
   
-  const Logs = mongoose.model('Logs', logsSchema);
-  
-  module.exports = Logs;
-  
+const Logs = mongoose.model('Logs', logsSchema);
+module.exports = Logs;
