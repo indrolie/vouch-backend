@@ -12,14 +12,12 @@ require('dotenv-extended').load({
 });
 
 const mongoose = require('mongoose');
-mongoose.connect(
-  'mongodb://' + process.env.PRODUCTION_DB_HOST + ':' +
-  process.env.PRODUCTION_DB_PORT + '/' + process.env.PRODUCTION_DB_NAME,
-  {
-    user: process.env.PRODUCTION_DB_USERNAME,
-    pass: process.env.PRODUCTION_DB_PASSWORD
-  }
-);
+mongoose.connect(process.env.MONGODB_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 //-------------------------------------------------------------------------------------------------------------------
 
