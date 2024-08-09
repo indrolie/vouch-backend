@@ -3,21 +3,18 @@ const Logs = require('../ticketLogs/model')
 const Counter = require('./counter');
 
 const getCounter = async () => {
-  return new Promise((resolve, reject) => {
-    Counter.findOneAndUpdate(
-      { name: 'ticketNumber' },
-      { $inc: { ticketNumber: 1 } },
-      { new: true },
-      (err, result) => {
-        if (result) {
-          resolve(result.ticketNumber);
-        } else {
-          console.log('Update failed...');
-          reject();
-        }
-      }
-    );
-  });
+  const result = await Counter.findOneAndUpdate(
+    { name: 'ticketNumber' },
+    { $inc: { ticketNumber: 1 } },
+    { new: true }
+  )
+
+  if (result) {
+    return result.ticketNumber;
+  } else {
+    console.log('Update failed...');
+    throw new Error('[Counter] Update failed...');
+  }
 };
 
 const controller = {
@@ -32,11 +29,7 @@ const controller = {
   },
 
   showOneTicket: (req, res, next) => {
-    Tickets.findOne({ ticketNumber: req.params.id }, (result, err) => {
-      if (result) {
-        console.log(result);
-      }
-    })
+    Tickets.findOne({ ticketNumber: req.params.id })
       .then(response => res.status(200).send(response))
       .catch(error =>
         res.status(400).send({
@@ -88,12 +81,7 @@ const controller = {
           updatedAt: Date.now()
         }
       },
-      { new: true },
-      (result, err) => {
-        if (result) {
-          console.log(result);
-        }
-      }
+      { new: true }
     )
       .then(response => res.status(200).send({response, message: 'Ticket Updated'}))
       .catch(error =>
@@ -104,24 +92,17 @@ const controller = {
   },
 
   deleteTicket: async (req, res, next) => {
-    await Tickets.findOneAndRemove(
-      { ticketNumber: req.params.id },
-      (result, err) => {
-        if (result) {
-          console.log(result);
-        }
-      }
+    await Tickets.findOneAndDelete({ ticketNumber: req.params.id })
+    .then(response =>
+      res.status(200).send({
+        message: 'Ticket Deleted!'
+      })
     )
-      .then(response =>
-        res.status(200).send({
-          message: 'Ticket Deleted!'
-        })
-      )
-      .catch(error =>
-        res.status(400).send({
-          message: error.message
-        })
-      );
+    .catch(error =>
+      res.status(400).send({
+        message: error.message
+      })
+    );
   }
 };
 
