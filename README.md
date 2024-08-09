@@ -14,3 +14,6 @@
 | /tickets/:id    | DETELE | Delete one ticket                      |
 | /logs/add       | POST   | Add one log                            |
 | /logs/:id       | GET    | Show one ticket                        |
+
+### Remarks
+Run `node mongoose.js` to insert dummy data into your database.
