@@ -22,6 +22,7 @@ var debug = require('debug')('app-as:server')
 var http = require('http')
 
 const mongoose = require('mongoose');
+console.log('process.env.MONGODB_URL', process.env.MONGODB_URL)
 mongoose.connect(process.env.MONGODB_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
